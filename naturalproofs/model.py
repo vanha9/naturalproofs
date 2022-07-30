@@ -3,7 +3,11 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 import argparse
 import pickle
-import naturalproofs.dataloaders as dataloaders
+
+import sys
+sys.path.append('../naturalproofs')
+from naturalproofs import dataloaders as dataloaders
+
 import torch.nn.functional as F
 import torch
 import transformers
@@ -185,7 +189,7 @@ def cli_main():
     parser.add_argument('--accumulate-grad-batches', type=int, default=1)
     parser.add_argument('--val-check-interval', type=int, default=2000)
     parser.add_argument('--gradient-clip-val', type=float, default=1.0)
-    parser.add_argument('--gpus', type=int, default=1)
+    parser.add_argument('--gpus', type=int, default=0)
     parser.add_argument('--accelerator', default='ddp')
     parser.add_argument('--precision', type=int, default=16)
 
@@ -251,8 +255,8 @@ def cli_main():
         move_metrics_to_cpu=True,
         val_check_interval=args.val_check_interval,
         gradient_clip_val=args.gradient_clip_val,
-        gpus=args.gpus,
         accelerator=args.accelerator,
+        gpus=args.gpus,
         precision=args.precision,
         resume_from_checkpoint=args.checkpoint_path,
         max_steps=args.max_steps,

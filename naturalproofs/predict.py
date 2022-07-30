@@ -2,7 +2,11 @@ import pytorch_lightning as pl
 import argparse
 import os
 import pickle
-import naturalproofs.dataloaders as dataloaders
+
+import sys
+sys.path.append('../naturalproofs')
+from naturalproofs import dataloaders as dataloaders
+
 import naturalproofs.model as mutils
 import torch
 import transformers

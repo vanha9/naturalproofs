@@ -153,8 +153,8 @@ if __name__ == '__main__':
     import os
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--filepath', default='/path/to/dataset_name.json')
-    parser.add_argument('--output-path', default='/path/to/output')
+    parser.add_argument('--filepath', default='./data/naturalproofs_both.json')
+    parser.add_argument('--output-path', default='./output')
     parser.add_argument('--model-type', default='bert-base-cased')
     parser.add_argument('--ref-title-only', type=int, default=0, choices=[0, 1])
     parser.add_argument('--ex-title-only', type=int, default=0, choices=[0, 1])
